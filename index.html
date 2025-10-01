@@ -9,17 +9,17 @@
         margin: 0;
         height: 100vh;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
         background: linear-gradient(135deg, #667eea, #764ba2);
         font-family: Arial, sans-serif;
+        color: white;
+        text-align: center;
       }
 
       h1 {
-        color: white;
         font-size: 2rem;
-        text-align: center;
-        max-width: 600px;
         line-height: 1.5;
         animation: fadeInBounce 2s ease-in-out;
       }
@@ -53,6 +53,19 @@
           transform: translateY(0);
         }
       }
+
+      img {
+        width: 150px;
+        margin-top: 20px;
+        border-radius: 50%;
+        border: 2px solid white;
+        display: none; /* hide initially */
+      }
+
+      #timer {
+        font-size: 1.5rem;
+        margin-top: 10px;
+      }
     </style>
   </head>
   <body>
@@ -63,7 +76,29 @@
         target="_blank"
         >MR</a
       >
-      or else you are a GAY
+      Or you are a GAY
     </h1>
+    <div id="timer">10 seconds remaining</div>
+    <img
+      id="rainbowImage"
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Classic_Rainbow_Flag.svg/1024px-Classic_Rainbow_Flag.svg.png"
+      alt="Rainbow Flag"
+    />
+
+    <script>
+      let timeLeft = 10;
+      const timerEl = document.getElementById("timer");
+      const imageEl = document.getElementById("rainbowImage");
+
+      const countdown = setInterval(() => {
+        timeLeft--;
+        timerEl.textContent = `${timeLeft} seconds remaining`;
+        if (timeLeft <= 0) {
+          clearInterval(countdown);
+          timerEl.textContent = "Time's up! Check the MR!";
+          imageEl.style.display = "block"; // show the image after 10s
+        }
+      }, 1000);
+    </script>
   </body>
 </html>
